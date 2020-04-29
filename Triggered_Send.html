@@ -9,7 +9,7 @@ SET @SubscriberKey = AttributeValue(Customer_Number)
 
 /* SET @EmailAddress = "user@cloudcoachers.com" */
 /* SET @SubscriberKey = "TESTCloudCoachers1" */
-IF (not Empty @SubscriberKey) and (not Empty @Email_Address) then
+
 /* Creacion de los objetos TriggeredSend y TriggeredSendDefinition */
 SET @TriggeredSend = CreateObject('TriggeredSend')
 SET @TSendDefinition = CreateObject('TriggeredSendDefinition')
@@ -36,7 +36,7 @@ SET @TSend_StatusCode = InvokeCreate(@TriggeredSend, @TSend_StatusMsg, @ErrorCod
 IF @TSend_StatusCode != 'OK' THEN
 RaiseError(@TSend_StatusMsg, 0, @TSend_StatusCode, @ErrorCode)
 ENDIF
-ENDIF
+
 ]%%
 
 Triggered Send StatusCode: %%=v(@TSend_StatusCode)=%% <br>
