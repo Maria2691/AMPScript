@@ -5,7 +5,7 @@
 var @EmailAddress, @SubscriberKey
 
 SET @EmailAddress = AttributeValue(Email_Address)
-SET @SubscriberKey = AttributeValue(Id)
+SET @SubscriberKey = AttributeValue(Customer_Number)
 
 /* SET @EmailAddress = "user@cloudcoachers.com" */
 /* SET @SubscriberKey = "TESTCloudCoachers1" */
