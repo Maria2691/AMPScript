@@ -4,11 +4,9 @@
 /* Declaracion de variables e inicializacion datos del subscriber */
 var @EmailAddress, @SubscriberKey
 
-SET @EmailAddress = AttributeValue(Email_Address)
-SET @SubscriberKey = AttributeValue(Customer_Number)
 
-/* SET @EmailAddress = "user@cloudcoachers.com" */
-/* SET @SubscriberKey = "TESTCloudCoachers1" */
+ SET @EmailAddress = "m.arana@cloudcoachers.com"
+ SET @SubscriberKey = "TESTCloudCoachers1" 
 
 /* Creacion de los objetos TriggeredSend y TriggeredSendDefinition */
 SET @TriggeredSend = CreateObject('TriggeredSend')
