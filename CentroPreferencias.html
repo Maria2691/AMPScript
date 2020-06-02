@@ -23,21 +23,7 @@ SET @Status1 = 'Maria'
 SET @Status2 = 'Arana'
 SET @Status1 = 'm.arana@cloudcoachers'
 
- IF RequestParameter("submitted") == true then 
-    /* se han submitido el formulario */
 
-    /*  Se visualiza la segunda página - gracias */
-
-    SET @FirstPage = "none"
-    SET @SecondPage = "inline"
-
-ELSE
-    /* No se ha submitido el formulario */
-    /*  Se visualiza la primera página - formulario */
-
-    SET @FirstPage = "inline"
-    SET @SecondPage = "none"
-ENDIF
 
 
 ]%%
@@ -45,40 +31,9 @@ ENDIF
 Subscriber key: %%=V(@SubsKey)=%% <br><br>
 Idioma: %%=V(@Language)=%%
 
-
-
-
-<div style="display: %%=v(@firstPage)=%%;"> 
-Subscriber Key : %%=v(@SubsKey)=%% <br>
-Subscriber Email : %%=v(@EmailAddress)=%% <br>
-Status 1: %%=v(@Status1)=%% <br>
-Status 2: %%=v(@Status2)=%% <br>
-Status 3: %%=v(@Status3)=%% <br>
- 
-        <h2>Registrate</h2>
-        <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
-
-            <label>Nombre</label><br>
-            <input type="text" name="Primera Lista" value="%%=v(@Status1)=%%"><br> 
-
-            <label>Apellido</label><br>
-            <input type="text" name="Segunda Lista" value="%%=v(@Status2)=%%"><br>
-
-            <label>Email</label><br>
-            <input type="text" name="Tercera Lista" value="%%=v(@Status3)=%%"><br><br>
-
-            <input name="submitted" type="hidden" value="true">
-            <input type="submit" value="Enviar">
-        </form>
-
-</div>
-
-<div style="display: %%=v(@secondPage)=%%;" class="result"> 
-Subscriber Key : %%=v(@SubsKey)=%% <br>
-Subscriber Email : %%=v(@EmailAddress)=%% <br>
-
-  
-         <p>Gracias por registrarte, %%=v(@EmailAddress)=%%.</p>
-</div>
+<h1 align="center" >Mi Primera pagina web </h1>
+<hr>
+<p>Esto tan sencillo es una verdadera página web, aunque le falta el contenido, 
+pero todo llegará.</p>
 </body>
 </html> 
