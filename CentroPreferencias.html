@@ -1,11 +1,80 @@
-<html>
-<head>
-<title>Mi primera pagina web </title>
-</head>
-<body>
-<h1 align="center" >Mi Primera pagina web </h1>
-<hr>
-<p>Esto tan sencillo es una verdadera página web, aunque le falta el contenido, 
-pero todo llegará.</p>
-</body>
-</html> 
+%%[
+
+/* 0) Definición de variables: Subscriberkey, Idioma, Rows, Label_Name1, Label_Description1, Status1... Label_NameN, Label_DescriptionN, StatusN */
+/*(siendo N el numero total de publication lists) */
+
+VAR @SubsKey, @Language, @LabelName1, @Description1, @Status1, @LabelName2, @Description2, @Status2, @LabelName3, @Description3, @Status3, @LabelName4, @Description4, @Status4, @LabelName5, @Description5, @Status5
+
+
+
+/* 1) Recuperar el Subskey y el idioma de la data extensión de envio */
+
+SET @SubsKey = _subscriberkey
+SET @Language = Atributtevalue("Language")
+SET @EmailAddress = emailaddr
+
+
+/* 2) Recuperamos de la DE los distintos Labels a publicar segun el idioma. Recuperamos un rowset con los textos de ese idioma para cada publication list */
+
+
+
+/* 3) Para cada publication list(Filas de la rowset) */
+
+/* 3.1) extraemos los variables de "Label_Name" y las "label_description" en las variables correspondientes */
+
+
+
+/* 3.2) Recuperar el estado del subscriber en cada publication lists - Active or unsubscribe y cargarlo en variables. Una por lista (Boolean) y el por defecto a activo */
+
+SET @Status1 = 'True'
+SET @Status2 = 'False'
+SET @Status1 = 'True'
+
+
+/* Si submit entonces recuperamos las casillas marcadas y actualizamos el estado en las publication lists y le mandamos a la pagina de agradecimiento. */
+
+
+
+/* y sino dio submit entonces le mostramos las opciones de checkbox con los valores que hemos recuperado del subscriber en el punto 3.2 (Activo o inactivo) con los "label_Name" y "Label_Description" de cada publication list extraida en el punto 3.1 */
+
+
+]%%
+
+Subscriber key: %%=V(@SubsKey)=%% <br><br>
+Idioma: %%=V(@Language)=%%
+
+
+
+
+<div style="display: %%=v(@firstPage)=%%;"> 
+Subscriber Key : %%=v(@SubsKey)=%% <br>
+Subscriber Email : %%=v(@EmailAddress)=%% <br>
+Status 1: %%=v(@Status1)=%% <br>
+Status 2: %%=v(@Status2)=%% <br>
+Status 3: %%=v(@Status3)=%% <br>
+ 
+        <h2>Registrate</h2>
+        <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
+
+            <label>Nombre</label><br>
+            <input type="checkbox" name="Primera Lista" value="%%=v(@Status1)=%%"><br> 
+
+            <label>Apellido</label><br>
+            <input type="checkbox" name="Segunda Lista" value="%%=v(@Status2)=%%"><br>
+
+            <label>Email</label><br>
+            <input type="checkbox" name="Tercera Lista" value="%%=v(@Status3)=%%"><br><br>
+
+            <input name="submitted" type="hidden" value="true">
+            <input type="submit" value="Enviar">
+        </form>
+
+</div>
+
+<div style="display: %%=v(@secondPage)=%%;" class="result"> 
+Subscriber Key : %%=v(@SubsKey)=%% <br>
+Subscriber Email : %%=v(@EmailAddress)=%% <br>
+
+  
+         <p>Gracias por registrarte, %%=v(@EmailAddress)=%%.</p>
+</div>
