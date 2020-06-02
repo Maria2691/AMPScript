@@ -1,14 +1,42 @@
-<html>
-<head>
-<title>Mi primera pagina web </title>
-</head>
-<body>
 
-<h1 align="center" >Mi Primera pagina web </h1>
-<hr>
-<p>
 
-	Esto tan sencillo es una verdadera página web, aunque le falta el contenido, 
-pero todo llegará.</p>
-</body>
-</html> 
+%%[
+/* Declaracion de variables e inicializacion datos del subscriber */
+var @EmailAddress, @SubscriberKey
+
+
+ SET @EmailAddress = "m.arana@cloudcoachers.com"
+ SET @SubscriberKey = "TESTCloudCoachers1" 
+
+/* Creacion de los objetos TriggeredSend y TriggeredSendDefinition */
+SET @TriggeredSend = CreateObject('TriggeredSend')
+SET @TSendDefinition = CreateObject('TriggeredSendDefinition')
+
+/* Asignacion al TriggeredSendDefinition de la información */
+/* de la External Key de la definicion a utilizar */
+SetObjectProperty(@TSendDefinition, 'CustomerKey', 'AMPScript_CloudCoachers_TriggeredSen')
+
+/* Asignacion a la definicion del envio del TriggeredSendDefinition a utilizar */
+SetObjectProperty(@TriggeredSend, 'TriggeredSendDefinition', @TSendDefinition)
+
+/* Creacion y asignacion de datos al objeto subscriber */
+SET @Subscriber = CreateObject('Subscriber')
+SetObjectProperty(@Subscriber, 'EmailAddress', @EmailAddress)
+SetObjectProperty(@Subscriber, 'SubscriberKey', @SubscriberKey)
+
+/* Inclusion del objeto subscriber al array Subscribers del objeto TriggeredSend */
+AddObjectArrayItem(@TriggeredSend, 'Subscribers', @Subscriber)
+
+/* Invocacion a la creacion del objeto TriggeredSend - la llamada API */
+SET @TSend_StatusCode = InvokeCreate(@TriggeredSend, @TSend_StatusMsg, @ErrorCode)
+
+/* Control de errores */
+IF @TSend_StatusCode != 'OK' THEN
+RaiseError(@TSend_StatusMsg, 0, @TSend_StatusCode, @ErrorCode)
+ENDIF
+
+]%%
+
+Triggered Send StatusCode: %%=v(@TSend_StatusCode)=%% <br>
+Triggered Send StatusMsg: %%=v(@TSend_StatusMsg)=%% <br>
+ErrorCode: %%=v(@ErrorCode)=%% 
