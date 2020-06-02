@@ -3,9 +3,22 @@
 <title>Mi primera pagina web </title>
 </head>
 <body>
+%%[
+
+VAR @SubsKey, @Language, @EmailAddress
+
+
+SET @SubsKey = _subscriberkey
+SET @Language = Atributtevalue("Language")
+SET @EmailAddress = emailaddr
+]%%
 <h1 align="center" >Mi Primera pagina web </h1>
 <hr>
-<p>Esto tan sencillo es una verdadera página web, aunque le falta el contenido, 
+<p>
+Sunbscriber Key: %%=v(@SubsKey)=%%<br>
+Idioma: %%=v(@Language)=%%<br>
+Email: %%=v(@EmailAddress)=%%<br>
+	Esto tan sencillo es una verdadera página web, aunque le falta el contenido, 
 pero todo llegará.</p>
 </body>
 </html> 
