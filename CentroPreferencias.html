@@ -19,9 +19,9 @@ SET @Language = Atributtevalue("Language")
 SET @EmailAddress = emailaddr
 
 
-SET @Status1 = 'True'
-SET @Status2 = 'False'
-SET @Status1 = 'True'
+SET @Status1 = 'Maria'
+SET @Status2 = 'Arana'
+SET @Status1 = 'm.arana@cloudcoachers'
 
  IF RequestParameter("submitted") == true then 
     /* se han submitido el formulario */
@@ -59,13 +59,13 @@ Status 3: %%=v(@Status3)=%% <br>
         <form action="%%=RequestParameter('PAGEURL')=%%" method="post">
 
             <label>Nombre</label><br>
-            <input type="checkbox" name="Primera Lista" value="%%=v(@Status1)=%%"><br> 
+            <input type="text" name="Primera Lista" value="%%=v(@Status1)=%%"><br> 
 
             <label>Apellido</label><br>
-            <input type="checkbox" name="Segunda Lista" value="%%=v(@Status2)=%%"><br>
+            <input type="text" name="Segunda Lista" value="%%=v(@Status2)=%%"><br>
 
             <label>Email</label><br>
-            <input type="checkbox" name="Tercera Lista" value="%%=v(@Status3)=%%"><br><br>
+            <input type="text" name="Tercera Lista" value="%%=v(@Status3)=%%"><br><br>
 
             <input name="submitted" type="hidden" value="true">
             <input type="submit" value="Enviar">
